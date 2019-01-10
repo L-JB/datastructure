@@ -1,0 +1,122 @@
+//2019/01/10 datastructure array_stack
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+
+const int Arsize = 100;
+
+int* MakeEmptyStack();
+bool IsEmptyStack(int* length);
+int Top(int stackadd[], int* length);
+int Pop(int stackadd[], int* length);
+void Push(int stackadd[], int* length);
+void stack(int select, int stackadd[], int* length);
+
+int main()
+{
+	int* stackadd = MakeEmptyStack();
+	int* length = new int;
+	*length = 0;
+	std::cout << "Stack is maded!\n";
+	std::cout << "please order the next operation.\n";
+	int select;
+	std::cout << "1. IsEmptyStack()\n"
+		<< "2. Top\n"
+		<< "3. Pop\n"
+		<< "4. Push\n";
+	while(std::cin >> select)
+	{
+		stack(select, stackadd, length);
+	}
+	return 0;
+}
+
+int* MakeEmptyStack()
+{
+	int* stack_pointer = new int[Arsize];
+	return stack_pointer;
+}
+
+bool IsEmptyStack(int* length)
+{
+	
+	if (*length == 0)
+	{
+		std::cout << "This stack is empty!\n";
+		return 1;
+	}
+	else
+	{
+		std::cout << "This stack is not empty!\n";
+		return 0;
+	}
+}
+
+int Top(int stackadd[], int* length)
+{
+	if (*length == 0)
+	{
+		std::cout << "ERROR" << std::endl;
+		return 0;
+	}
+	else
+		std::cout << stackadd[*length - 1] << std::endl;
+		return stackadd[*length - 1];
+}
+
+int Pop(int stackadd[], int* length)
+{
+	if (*length == 0)
+	{
+		std::cout << "ERROR" << std::endl;
+		return 0;
+	}
+	else
+	{	
+		--(*length);
+		std::cout << stackadd[*length] << std::endl;
+		return stackadd[*length];
+	}
+}
+
+void Push(int stackadd[], int* length)
+{
+	if (*length == Arsize)
+	{
+		std::cout << "ERROR" << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << "Input the " << *length + 1 << "th data : ";
+		int info;
+		std::cin >> info;
+		stackadd[*length] = info;
+		++(*length);
+		return;
+	}
+}
+
+void stack(int select, int stackadd[],int* length)
+{
+	switch (select)
+	{
+	case 1: IsEmptyStack(length);
+		break;
+
+	case 2: Top(stackadd,length);
+		break;
+
+	case 3: Pop(stackadd, length);
+		break;
+
+	case 4: Push(stackadd, length);
+		break;
+	}
+	std::cout << "1. IsEmptyStack()\n"
+		<< "2. Top\n"
+		<< "3. Pop\n"
+		<< "4. Push\n";
+	return;
+}
